@@ -13,10 +13,11 @@ cask "banda-dev" do
 
   app "banda-dev.app", target: "Banda Dev.app"
 
-  # Signed ad hoc, not notarized: without its quarantine Gatekeeper lets it open.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Banda Dev.app"]
+  # Signed ad hoc, not notarized: without its quarantine Gatekeeper lets it
+  # open. Homebrew's own steps, as its Ruby postflight is deprecated.
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args: ["-dr", "com.apple.quarantine", "{{appdir}}/Banda Dev.app"]
   end
 
   zap trash: [
