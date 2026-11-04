@@ -11,7 +11,7 @@ cask "banda-dev" do
 
   depends_on arch: :arm64
 
-  app "Banda Dev.app"
+  app "banda-dev.app", target: "Banda Dev.app"
 
   # Signed ad hoc, not notarized: without its quarantine Gatekeeper lets it open.
   postflight do
