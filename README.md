@@ -7,7 +7,7 @@ brew install --cask 0x1oceanlabs/banda/banda-dev   # Banda Dev: every merge to m
 brew install --cask 0x1oceanlabs/banda/banda       # Banda: each Stable release
 ```
 
-Update with `brew upgrade --cask banda-dev` (or `banda`). Banda tells you when a new version is out.
+Update with `brew update && brew upgrade --cask banda-dev` (or `banda`): `brew update` first, so brew reads the tap as it is now. Banda tells you when a new version is out.
 
 The app is signed ad hoc, not notarized, until there is an Apple certificate. The cask removes its quarantine, so macOS opens it.
 
