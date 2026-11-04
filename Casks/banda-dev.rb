@@ -1,8 +1,8 @@
 # Written by the release workflow of 0x1oceanlabs/banda
 # (scripts/cask.mjs): a change here is lost at the next release.
 cask "banda-dev" do
-  version "0.1.0-dev.143"
-  sha256 "31f3360a38a1dfb95337c22badfa21564b12fcc31c4e892b0e4e09dfff4e683d"
+  version "0.1.0-dev.145"
+  sha256 "9cb7dd5904f9ded8cacfc2e96db5389bf4ef9be8b0e805d8134708cfce85c1ee"
 
   url "https://github.com/0x1oceanlabs/banda/releases/download/v#{version}/banda-dev-#{version}-arm64.zip"
   name "Banda Dev"
@@ -11,7 +11,7 @@ cask "banda-dev" do
 
   depends_on arch: :arm64
 
-  app "banda-dev.app", target: "Banda Dev.app"
+  app "Banda Dev.app"
 
   # Signed ad hoc, not notarized: without its quarantine Gatekeeper lets it open.
   postflight do
