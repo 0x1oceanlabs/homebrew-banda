@@ -1,8 +1,8 @@
 # Written by the release workflow of 0x1oceanlabs/banda
 # (scripts/cask.mjs): a change here is lost at the next release.
 cask "banda-dev" do
-  version "0.1.0-dev.167"
-  sha256 "b5cd1643adb818f39a4b3f62a93b11145b05d77038ef7977b8577eac63838d1c"
+  version "0.1.0-dev.168"
+  sha256 "f50382dc53ee37fff0f59a91f342556c39056f2fa6c3ccc29669f8d288629a44"
 
   url "https://github.com/0x1oceanlabs/banda/releases/download/v#{version}/banda-dev-#{version}-arm64.zip"
   name "Banda Dev"
@@ -13,10 +13,11 @@ cask "banda-dev" do
 
   app "banda-dev.app", target: "Banda Dev.app"
 
-  # Signed ad hoc, not notarized: without its quarantine Gatekeeper lets it open.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Banda Dev.app"]
+  # Signed ad hoc, not notarized: without its quarantine Gatekeeper lets it
+  # open. Homebrew's own steps, as its Ruby postflight is deprecated.
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args: ["-dr", "com.apple.quarantine", "{{appdir}}/Banda Dev.app"]
   end
 
   zap trash: [
