@@ -1,8 +1,8 @@
 # Written by the release workflow of 0x1oceanlabs/banda
 # (scripts/cask.mjs): a change here is lost at the next release.
 cask "banda-dev" do
-  version "0.1.0-dev.476"
-  sha256 "711812b137ea0ff8f55dbab4d44ecc23ce647a45bb0b571ce80429cfe8484044"
+  version "0.1.0-dev.477"
+  sha256 "ca194f81b9d6a1b7205140b71e5a2143ad9b62f6cbaf3c785ebc2404cae8ce83"
 
   url "https://github.com/0x1oceanlabs/banda/releases/download/v#{version}/banda-dev-#{version}-arm64.zip"
   name "Banda Dev"
@@ -20,12 +20,17 @@ cask "banda-dev" do
         args: ["-dr", "com.apple.quarantine", "{{appdir}}/Banda Dev.app"]
   end
 
-  zap trash: [
-    "~/Library/Application Support/banda-dev",
-    "~/Library/Application Support/Banda Dev",
-    "~/Library/Caches/so.banda.dev",
-    "~/Library/Caches/so.banda.dev.ShipIt",
-    "~/Library/Preferences/so.banda.dev.plist",
-    "~/Library/Saved Application State/so.banda.dev.savedState",
-  ]
+  # The engine's launchd job (ADR 0086, decision 1): only zap takes it
+  # away, so an upgrade, whose uninstall runs, leaves the engine and its
+  # Agents running (decision 6).
+  zap launchctl: "so.banda.dev.engine",
+      trash:     [
+        "~/Library/LaunchAgents/so.banda.dev.engine.plist",
+        "~/Library/Application Support/banda-dev",
+        "~/Library/Application Support/Banda Dev",
+        "~/Library/Caches/so.banda.dev",
+        "~/Library/Caches/so.banda.dev.ShipIt",
+        "~/Library/Preferences/so.banda.dev.plist",
+        "~/Library/Saved Application State/so.banda.dev.savedState",
+      ]
 end
