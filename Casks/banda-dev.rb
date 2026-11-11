@@ -1,8 +1,8 @@
 # Written by the release workflow of 0x1oceanlabs/banda
 # (scripts/cask.mjs): a change here is lost at the next release.
 cask "banda-dev" do
-  version "0.1.0-dev.627"
-  sha256 "0f541888f93e5e3c216f08362bf7f2590d2056a366b4a0c32feabd7979ba2f69"
+  version "0.1.0-dev.628"
+  sha256 "a29b3d84e981240b155efe894761cc949fde41660f50069e7a323d8e38a0c15e"
 
   url "https://github.com/0x1oceanlabs/banda/releases/download/v#{version}/banda-dev-#{version}-arm64.zip"
   name "Banda Dev"
